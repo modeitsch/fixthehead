@@ -1,0 +1,231 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { CONFIG } from "../lib/config.js";
+
+const year = new Date().getFullYear();
+
+const hasEmail = Boolean(CONFIG.CONTACT_EMAIL);
+const hasPhone = Boolean(CONFIG.CONTACT_PHONE);
+const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}` : "";
+---
+
+<Layout
+  title="FixTheHead — Nephesh Discovery & One-on-One Coaching"
+  description="Suffer less, live more. One-on-one spiritual coaching and Nephesh Discovery sessions to help you see the options available on your path."
+>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#top">FixTheHead</a>
+      <ul>
+        <li><a href="#about">My Journey</a></li>
+        <li><a href="#nephesh">Nephesh Discovery</a></li>
+        <li><a href="#modalities">Modalities</a></li>
+        <li><a href="#session">Sessions</a></li>
+        <li><a href="#booking" class="nav-cta">Book Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <h1>Suffer less. See more of what's possible.</h1>
+        <p class="tagline">
+          FixTheHead is a space for Nephesh Discovery — one-on-one work to help
+          you find the options already available to you on the path toward a
+          fuller, lighter life.
+        </p>
+        <a class="btn btn-primary" href="#booking">Book a Session</a>
+        <a class="btn btn-secondary" href="#about">My Story</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap two-col">
+        <div class="portrait-frame">
+          <!-- Replace this block with: <img src="/images/your-photo.jpg" alt="Your name"> -->
+          <span class="placeholder">Add your photo: public/images/your-photo.jpg</span>
+        </div>
+        <div>
+          <div class="kicker">My Journey</div>
+          <h2>Hi, I'm <span class="placeholder">[Your Name]</span></h2>
+          <p class="placeholder">
+            Replace this paragraph with 3–5 sentences about your own path:
+            what you went through, what shifted for you, and why you now guide
+            others toward suffering less. Keep it honest and specific — people
+            connect with the real turning points, not a polished bio.
+          </p>
+          <p class="placeholder">
+            Add a second short paragraph here on how that journey shaped the
+            way you work with people today.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="nephesh" class="alt">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="kicker">The Work</div>
+          <h2>What is Nephesh Discovery?</h2>
+        </div>
+        <div class="two-col">
+          <div>
+            <p>
+              <em>Nephesh</em> is a Hebrew word for the soul, or life-force —
+              the part of you that's still asking questions underneath
+              whatever is hurting right now.
+            </p>
+            <p>
+              Nephesh Discovery is a guided process, not a fixed program.
+              Together we slow down enough to see the options that are
+              actually available to you on your path — the ones that get
+              hidden by pain, habit, or old stories about who you have to be.
+            </p>
+            <p>
+              The goal isn't to hand you a single answer. It's to help you
+              recognize your own options clearly enough that you can choose
+              one, and suffer a little less along the way.
+            </p>
+          </div>
+          <div>
+            <p class="placeholder">
+              Optional: add a short pull-quote or a specific example here of
+              what a Nephesh Discovery session actually looks like in
+              practice.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modalities">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="kicker">Tools I Draw On</div>
+          <h2>Modalities</h2>
+          <p class="placeholder">
+            The cards below are placeholders. Replace each title/description
+            with the modalities you've personally experienced and now use with
+            clients (e.g. breathwork, meditation, somatic practices, plant
+            medicine integration, sound healing, shadow work, etc.).
+          </p>
+        </div>
+        <div class="modalities-grid">
+          <div class="modality-card">
+            <h3 class="placeholder">Modality One</h3>
+            <p class="placeholder">One or two sentences on what this is and how you use it.</p>
+          </div>
+          <div class="modality-card">
+            <h3 class="placeholder">Modality Two</h3>
+            <p class="placeholder">One or two sentences on what this is and how you use it.</p>
+          </div>
+          <div class="modality-card">
+            <h3 class="placeholder">Modality Three</h3>
+            <p class="placeholder">One or two sentences on what this is and how you use it.</p>
+          </div>
+          <div class="modality-card">
+            <h3 class="placeholder">Modality Four</h3>
+            <p class="placeholder">One or two sentences on what this is and how you use it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="session" class="alt">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="kicker">Work With Me</div>
+          <h2>One-on-One Session</h2>
+        </div>
+        <div class="session-card">
+          <p>A focused, private Nephesh Discovery session — just the two of us.</p>
+          <div class="price placeholder">$[price] / [duration]</div>
+          <ul class="session-includes">
+            <li class="placeholder">What's included, point one</li>
+            <li class="placeholder">What's included, point two</li>
+            <li class="placeholder">What's included, point three</li>
+          </ul>
+          <a class="btn btn-primary" href="#booking">Book Your Session</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="kicker">Ready When You Are</div>
+          <h2>Book &amp; Pay</h2>
+        </div>
+        <div class="booking-grid">
+          <div class="calendar-embed">
+            {CONFIG.CALENDLY_URL ? (
+              <iframe
+                src={CONFIG.CALENDLY_URL}
+                style="width: 100%; height: 480px; border: none;"
+                title="Book a session"
+              />
+            ) : (
+              <div>
+                <p><strong>Online scheduling is coming soon.</strong></p>
+                <p>
+                  For now, reach out directly to book your session:{" "}
+                  {hasEmail ? (
+                    <a href={`mailto:${CONFIG.CONTACT_EMAIL}`}>{CONFIG.CONTACT_EMAIL}</a>
+                  ) : (
+                    <span class="placeholder">add your email in src/lib/config.js</span>
+                  )}
+                </p>
+              </div>
+            )}
+          </div>
+          <div>
+            <div class="pay-card">
+              <h3>Pay by Credit Card</h3>
+              {CONFIG.STRIPE_PAYMENT_LINK ? (
+                <a class="btn btn-primary" href={CONFIG.STRIPE_PAYMENT_LINK} target="_blank" rel="noopener">
+                  Pay by Credit Card
+                </a>
+              ) : (
+                <span class="placeholder">
+                  Stripe payment link coming soon — add STRIPE_PAYMENT_LINK in src/lib/config.js
+                </span>
+              )}
+            </div>
+            <div class="pay-card">
+              <h3>Pay by Zelle</h3>
+              {CONFIG.ZELLE_RECIPIENT ? (
+                <p>
+                  Send your Zelle payment to:<br />
+                  <strong>{CONFIG.ZELLE_RECIPIENT}</strong>
+                </p>
+              ) : (
+                <span class="placeholder">
+                  Zelle email/phone coming soon — add ZELLE_RECIPIENT in src/lib/config.js
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>FixTheHead &middot; Nephesh Discovery</p>
+      <p>
+        {hasEmail || hasPhone ? (
+          <Fragment>
+            {hasEmail && <a href={`mailto:${CONFIG.CONTACT_EMAIL}`}>{CONFIG.CONTACT_EMAIL}</a>}
+            {hasEmail && hasPhone && <Fragment> &middot; </Fragment>}
+            {hasPhone && <a href={telHref}>{CONFIG.CONTACT_PHONE}</a>}
+          </Fragment>
+        ) : (
+          <span class="placeholder">add CONTACT_EMAIL / CONTACT_PHONE in src/lib/config.js</span>
+        )}
+      </p>
+      <p>&copy; {year} FixTheHead. All rights reserved.</p>
+    </div>
+  </footer>
+</Layout>
