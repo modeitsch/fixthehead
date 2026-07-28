@@ -3,6 +3,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'http://modeitsch.com',
-  base: '/fixthehead',
+  site: 'https://fixthehead.com',
+  base: '/',
 });
