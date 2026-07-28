@@ -43,8 +43,7 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
     <section id="about">
       <div class="wrap two-col">
         <div class="portrait-frame">
-          <!-- Replace this block with: <img src="/images/your-photo.jpg" alt="Your name"> -->
-          <span class="placeholder">Add your photo: public/images/your-photo.jpg</span>
+          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/images/moshe.png`} alt="Moshe" />
         </div>
         <div>
           <div class="kicker">My Journey</div>
@@ -140,7 +139,7 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
         </div>
         <div class="session-card">
           <p>A focused, private Nephesh Discovery session — just the two of us.</p>
-          <div class="price placeholder">$[price] / [duration]</div>
+          <div class="price">$180 / 90 min</div>
           <ul class="session-includes">
             <li class="placeholder">What's included, point one</li>
             <li class="placeholder">What's included, point two</li>
