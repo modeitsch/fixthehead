@@ -16,7 +16,16 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
   <header>
     <nav class="wrap">
       <a class="brand" href="#top">FixTheHead</a>
-      <ul>
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu">
         <li><a href="#about">My Journey</a></li>
         <li><a href="#nefesh">Nefesh Discovery</a></li>
         <li><a href="#modalities">Modalities</a></li>
@@ -211,28 +220,16 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
           <div class="kicker">Ready When You Are</div>
           <h2>Book &amp; Pay</h2>
         </div>
-        <div class="booking-grid">
-          <div class="calendar-embed">
-            {CONFIG.CALENDLY_URL ? (
+        <div class={`booking-grid ${CONFIG.CALENDLY_URL ? "" : "single"}`}>
+          {CONFIG.CALENDLY_URL && (
+            <div class="calendar-embed">
               <iframe
                 src={CONFIG.CALENDLY_URL}
                 style="width: 100%; height: 480px; border: none;"
                 title="Book a session"
               />
-            ) : (
-              <div>
-                <p><strong>Online scheduling is coming soon.</strong></p>
-                <p>
-                  For now, reach out directly to book your session:{" "}
-                  {hasEmail ? (
-                    <a href={`mailto:${CONFIG.CONTACT_EMAIL}`}>{CONFIG.CONTACT_EMAIL}</a>
-                  ) : (
-                    <span class="placeholder">add your email in src/lib/config.js</span>
-                  )}
-                </p>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
           <div>
             <div class="pay-card">
               <h3>Pay by Credit Card</h3>
@@ -289,4 +286,23 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
       <p>&copy; {year} FixTheHead. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    const toggle = document.getElementById("nav-toggle");
+    const menu = document.getElementById("nav-menu");
+
+    toggle?.addEventListener("click", () => {
+      const isOpen = menu?.classList.toggle("open");
+      toggle.classList.toggle("open", isOpen);
+      toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    });
+
+    menu?.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLElement && event.target.tagName === "A") {
+        menu.classList.remove("open");
+        toggle?.classList.remove("open");
+        toggle?.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
 </Layout>
