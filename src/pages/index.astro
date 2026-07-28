@@ -7,6 +7,11 @@ const year = new Date().getFullYear();
 const hasEmail = Boolean(CONFIG.CONTACT_EMAIL);
 const hasPhone = Boolean(CONFIG.CONTACT_PHONE);
 const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}` : "";
+
+const hasWhatsapp = Boolean(CONFIG.WHATSAPP_NUMBER);
+const whatsappHref = hasWhatsapp
+  ? `https://wa.me/${CONFIG.WHATSAPP_NUMBER.replace(/[^0-9]/g, "")}`
+  : "";
 ---
 
 <Layout
@@ -30,7 +35,16 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
         <li><a href="#nefesh">Nefesh Discovery</a></li>
         <li><a href="#modalities">Modalities</a></li>
         <li><a href="#session">Sessions</a></li>
-        <li><a href="#booking" class="nav-cta">Book Now</a></li>
+        <li>
+          <a
+            href={hasWhatsapp ? whatsappHref : "#"}
+            class="nav-cta"
+            target={hasWhatsapp ? "_blank" : undefined}
+            rel={hasWhatsapp ? "noopener" : undefined}
+          >
+            Book Now
+          </a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -44,7 +58,14 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
           you find the options already available to you on the path toward a
           fuller, lighter life.
         </p>
-        <a class="btn btn-primary" href="#booking">Book a Session</a>
+        <a
+          class="btn btn-primary"
+          href={hasWhatsapp ? whatsappHref : "#"}
+          target={hasWhatsapp ? "_blank" : undefined}
+          rel={hasWhatsapp ? "noopener" : undefined}
+        >
+          Book a Session
+        </a>
         <a class="btn btn-secondary" href="#about">My Story</a>
       </div>
     </section>
@@ -122,7 +143,14 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
           we'll cut through the inner noise, untangle the mind, and get you
           back to living fully.
         </p>
-        <a class="btn btn-primary" href="#booking">Book Your Nefesh Discovery Session</a>
+        <a
+          class="btn btn-primary"
+          href={hasWhatsapp ? whatsappHref : "#"}
+          target={hasWhatsapp ? "_blank" : undefined}
+          rel={hasWhatsapp ? "noopener" : undefined}
+        >
+          Book Your Nefesh Discovery Session
+        </a>
       </div>
     </section>
 
@@ -209,54 +237,14 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
             <li class="placeholder">What's included, point two</li>
             <li class="placeholder">What's included, point three</li>
           </ul>
-          <a class="btn btn-primary" href="#booking">Book Your Session</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="booking">
-      <div class="wrap">
-        <div class="section-heading">
-          <div class="kicker">Ready When You Are</div>
-          <h2>Book &amp; Pay</h2>
-        </div>
-        <div class={`booking-grid ${CONFIG.CALENDLY_URL ? "" : "single"}`}>
-          {CONFIG.CALENDLY_URL && (
-            <div class="calendar-embed">
-              <iframe
-                src={CONFIG.CALENDLY_URL}
-                style="width: 100%; height: 480px; border: none;"
-                title="Book a session"
-              />
-            </div>
-          )}
-          <div>
-            <div class="pay-card">
-              <h3>Pay by Credit Card</h3>
-              {CONFIG.STRIPE_PAYMENT_LINK ? (
-                <a class="btn btn-primary" href={CONFIG.STRIPE_PAYMENT_LINK} target="_blank" rel="noopener">
-                  Pay by Credit Card
-                </a>
-              ) : (
-                <span class="placeholder">
-                  Stripe payment link coming soon — add STRIPE_PAYMENT_LINK in src/lib/config.js
-                </span>
-              )}
-            </div>
-            <div class="pay-card">
-              <h3>Pay by Zelle</h3>
-              {CONFIG.ZELLE_RECIPIENT ? (
-                <p>
-                  Send your Zelle payment to:<br />
-                  <strong>{CONFIG.ZELLE_RECIPIENT}</strong>
-                </p>
-              ) : (
-                <span class="placeholder">
-                  Zelle email/phone coming soon — add ZELLE_RECIPIENT in src/lib/config.js
-                </span>
-              )}
-            </div>
-          </div>
+          <a
+            class="btn btn-primary"
+            href={hasWhatsapp ? whatsappHref : "#"}
+            target={hasWhatsapp ? "_blank" : undefined}
+            rel={hasWhatsapp ? "noopener" : undefined}
+          >
+            Book Your Session
+          </a>
         </div>
       </div>
     </section>
@@ -266,14 +254,18 @@ const telHref = hasPhone ? `tel:${CONFIG.CONTACT_PHONE.replace(/[^0-9+]/g, "")}`
     <div class="wrap">
       <p>FixTheHead &middot; Nefesh Discovery</p>
       <p>
-        {hasEmail || hasPhone ? (
+        {hasWhatsapp || hasEmail || hasPhone ? (
           <Fragment>
+            {hasWhatsapp && (
+              <a href={whatsappHref} target="_blank" rel="noopener">WhatsApp</a>
+            )}
+            {hasWhatsapp && (hasEmail || hasPhone) && <Fragment> &middot; </Fragment>}
             {hasEmail && <a href={`mailto:${CONFIG.CONTACT_EMAIL}`}>{CONFIG.CONTACT_EMAIL}</a>}
             {hasEmail && hasPhone && <Fragment> &middot; </Fragment>}
             {hasPhone && <a href={telHref}>{CONFIG.CONTACT_PHONE}</a>}
           </Fragment>
         ) : (
-          <span class="placeholder">add CONTACT_EMAIL / CONTACT_PHONE in src/lib/config.js</span>
+          <span class="placeholder">add WHATSAPP_NUMBER / CONTACT_EMAIL / CONTACT_PHONE in src/lib/config.js</span>
         )}
       </p>
       <p class="disclaimer">
