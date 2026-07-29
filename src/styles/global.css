@@ -125,11 +125,23 @@ nav.wrap {
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand img {
+  display: block;
+  height: 42px;
+  width: auto;
+}
+
+.brand span {
   font-family: "Fraunces", Georgia, serif;
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--ink);
-  text-decoration: none;
 }
 
 nav ul {
@@ -325,26 +337,6 @@ section.alt {
   font-size: 2.2rem;
   color: var(--accent-deep);
   margin: 10px 0 4px;
-}
-
-.session-includes {
-  text-align: left;
-  max-width: 420px;
-  margin: 24px auto;
-  padding: 0;
-  list-style: none;
-}
-
-.session-includes li {
-  padding: 6px 0 6px 28px;
-  position: relative;
-}
-
-.session-includes li::before {
-  content: "\2713";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
 }
 
 /* Footer */
